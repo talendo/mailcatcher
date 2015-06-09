@@ -108,7 +108,6 @@ module MailCatcher::Mail extend self
   end
 
   def messages
-    byebug
     @messages_query ||= db.prepare('statement4', "SELECT id, sender, recipients, subject, size, created_at FROM message ORDER BY created_at, id ASC")
     res = db.exec_prepared('statement4', [])
     res.values.map do |row|
