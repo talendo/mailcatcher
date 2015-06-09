@@ -149,7 +149,7 @@ module MailCatcher extend self
 
     puts "Starting MailCatcher"
 
-    Thin::Logging.silent = (ENV["MAILCATCHER_ENV"] != "development")
+    Thin::Logging.silent = (ENV["MAILCATCHER_ENV"] != "development" || ENV['MAILCATCHER_NOT_SILENT'])
 
     # One EventMachine loop...
     EventMachine.run do
