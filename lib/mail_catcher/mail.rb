@@ -6,7 +6,7 @@ require "pg"
 module MailCatcher::Mail extend self
   def db
     @__db ||= begin
-      db = PG.connect( dbname: 'talendo_development' )
+      db = PG.connect(ENV['DATABASE_URL'])
       db.exec('DROP TABLE message_part')
       db.exec('DROP TABLE message')
       db.exec(<<-SQL)
