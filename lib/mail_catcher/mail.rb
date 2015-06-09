@@ -7,8 +7,8 @@ module MailCatcher::Mail extend self
   def db
     @__db ||= begin
       db = PG.connect(ENV['DATABASE_URL'])
-      db.exec('DROP TABLE message_part')
-      db.exec('DROP TABLE message')
+      db.exec('DROP TABLE IF EXISTS message_part')
+      db.exec('DROP TABLE IF EXISTS message')
       db.exec(<<-SQL)
           CREATE TABLE message (
             id INTEGER PRIMARY KEY,
